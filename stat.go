@@ -71,7 +71,8 @@ func output() {
 }
 
 func update(series string, value int64) {
-	err := client.Call("Server.Update", &Point{Process, series, value}, &struct{}{})
+	var reply Point
+	err := client.Call("Server.Update", &Point{Process, series, value}, &reply)
 	if err != nil {
 		log.Println("stat update:", err)
 	}
